@@ -12,6 +12,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+//CALULADORA NO FUNCIONA
+
 public class MainActivity extends AppCompatActivity {
 
     float respuestaOperación = 0, valor1, valor2;
