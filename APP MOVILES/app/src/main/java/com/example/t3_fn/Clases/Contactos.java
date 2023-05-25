@@ -1,6 +1,8 @@
 package com.example.t3_fn.Clases;
 
-public class Contactos {
+import java.io.Serializable;
+
+public class Contactos implements Serializable {
     String nombre;
     String numero;
     String foto;
