@@ -6,6 +6,7 @@ public class Contactos implements Serializable {
     String nombre;
     String numero;
     String foto;
+    String id;
 
     public Contactos() {
     }
@@ -38,6 +39,14 @@ public class Contactos implements Serializable {
 
     public void setFoto(String foto) {
         this.foto = foto;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
 

@@ -40,12 +40,33 @@
             android:layout_weight="1"
             tools:srcCompat="@tools:sample/avatars" />
 
-        <Button
-            android:id="@+id/btnLlamada"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <LinearLayout
+            android:layout_width="112dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Abrir Llamada" />
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btnLlamada"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Llamar " />
+
+            <Button
+                android:id="@+id/btnEditar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Editar" />
+
+            <Button
+                android:id="@+id/btnBorrar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Eliminar" />
+        </LinearLayout>
 
     </LinearLayout>
 </LinearLayout>

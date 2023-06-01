@@ -13,10 +13,17 @@ import android.widget.Button;
 import com.example.t3_fn.Adapters.ContactosAdapter;
 import com.example.t3_fn.Clases.Contactos;
 import com.example.t3_fn.Clases.DatosContactos;
+import com.example.t3_fn.Services.ContactosService;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ListadoActivity extends AppCompatActivity {
 
@@ -26,13 +33,31 @@ public class ListadoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listado);
-        contactos = ((DatosContactos) getApplicationContext()).getContactosList();
+        //contactos = ((DatosContactos) getApplicationContext()).getContactosList();
 
-        ContactosAdapter ctAp = new ContactosAdapter(contactos,this);
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://63023872c6dda4f287b57f7c.mockapi.io/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        ContactosService services = retrofit.create(ContactosService.class);
+        Call<List<Contactos>> call = services.getAllUser();
+        call.enqueue(new Callback<List<Contactos>>() {
+            @Override
+            public void onResponse(Call<List<Contactos>> call, Response<List<Contactos>> response) {
+                contactos = response.body();
+                ContactosAdapter ctAp = new ContactosAdapter(contactos,ListadoActivity.this);
 
-        RecyclerView rvLista =  findViewById(R.id.rvListaSimple);
-        rvLista.setLayoutManager(new LinearLayoutManager(this));
-        rvLista.setAdapter(ctAp);
+                RecyclerView rvLista =  findViewById(R.id.rvListaSimple);
+                rvLista.setLayoutManager(new LinearLayoutManager(ListadoActivity.this));
+                rvLista.setAdapter(ctAp);
+            }
+
+            @Override
+            public void onFailure(Call<List<Contactos>> call, Throwable t) {
+
+            }
+        });
+
 
         Button regresarC = findViewById(R.id.btnRegresar);
         regresarC.setOnClickListener(new View.OnClickListener() {
