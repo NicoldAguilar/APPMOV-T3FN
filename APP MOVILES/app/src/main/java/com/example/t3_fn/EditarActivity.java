@@ -45,13 +45,9 @@ public class EditarActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Contactos> call, Response<Contactos> response) {
                 //recibo el contacto a editar
-                String nombre = regEDNom.getText().toString();
-                String numero = regEDNum.getText().toString();
-                String imagen = regEDFot.getText().toString();
-
                 Contactos contacto = new Contactos();
-
                 contacto = response.body();
+
                 //seteamos los nuevos valores
                 regEDNom.setText(contacto.getNombre());
                 regEDNum.setText(contacto.getNumero());
