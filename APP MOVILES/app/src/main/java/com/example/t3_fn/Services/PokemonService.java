@@ -1,6 +1,8 @@
 package com.example.t3_fn.Services;
 
 import com.example.t3_fn.Clases.Contactos;
+import com.example.t3_fn.Clases.ImageResponse;
+import com.example.t3_fn.Clases.ImageToSave;
 import com.example.t3_fn.Clases.Pokemon;
 
 import java.util.List;
@@ -27,4 +29,6 @@ public interface PokemonService {
     Call<Pokemon> delete (@Path("id")int id);
     @GET("Pokemones/{id}")
     Call<Pokemon> findUser(@Path("id") int id);
+    @POST("image")
+    Call<ImageResponse> subirImagen(@Body ImageToSave imagen);
 }

@@ -1,24 +1,26 @@
 package com.example.t3_fn.Clases;
 
+import java.util.List;
+
 public class T4 {
 
     String nombre;
-    String tipo;
     String foto;
     String id;
-    String numero;
+    String descripcion;
     String urlCamara;
+    List<String> comentarios;
 
     public T4() {
     }
 
-    public T4(String nombre, String tipo, String foto, String id, String numero, String urlCamara) {
+    public T4(String nombre, String foto, String id, String numero, String urlCamara, List<String> comentarios) {
         this.nombre = nombre;
-        this.tipo = tipo;
         this.foto = foto;
         this.id = id;
-        this.numero = numero;
+        this.descripcion = numero;
         this.urlCamara =urlCamara;
+        this.comentarios = comentarios;
     }
 
     public String getNombre() {
@@ -27,14 +29,6 @@ public class T4 {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
     }
 
     public String getId() {
@@ -53,12 +47,12 @@ public class T4 {
         this.foto = foto;
     }
 
-    public String getNumero() {
-        return numero;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setNumero(String numero) {
-        this.numero = numero;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public String getUrlCamara() {
@@ -67,5 +61,12 @@ public class T4 {
 
     public void setUrlCamara(String urlCamara) {
         this.urlCamara = urlCamara;
+    }
+
+    public List<String> getComentarios() {
+        return comentarios;
+    }
+    public void setComentarios(List<String> comentarios) {
+        this.comentarios = comentarios;
     }
 }

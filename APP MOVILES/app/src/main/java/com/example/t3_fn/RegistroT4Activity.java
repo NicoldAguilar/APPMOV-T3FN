@@ -22,13 +22,10 @@ import android.widget.TextView;
 
 import com.example.t3_fn.Clases.ImageResponse;
 import com.example.t3_fn.Clases.ImageToSave;
-import com.example.t3_fn.Clases.Pokemon;
 import com.example.t3_fn.Clases.T4;
-import com.example.t3_fn.Services.PokemonService;
 import com.example.t3_fn.Services.T4Service;
 
 import java.io.ByteArrayOutputStream;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -50,11 +47,9 @@ public class RegistroT4Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro_t4);
 
-        Button registrarP = findViewById(R.id.btnRegistrarPoke);
-
-        EditText regPNom = findViewById(R.id.etNombreP);
-        EditText regPNum = findViewById(R.id.etNumeroP);
-        EditText regPTipo = findViewById(R.id.etTipoP);
+        Button registrarP = findViewById(R.id.btnRegistrarPubli);
+        EditText regPNom = findViewById(R.id.etNombrePubli);
+        EditText regPDesc = findViewById(R.id.etDescripcionPubli);
         ivAvatar = findViewById(R.id.ivAvatar);
         Button btnCamera = findViewById(R.id.btnCamara);
         Button btnGallery = findViewById(R.id.btnGaleria);
@@ -84,19 +79,17 @@ public class RegistroT4Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String nombre = regPNom.getText().toString();
-                String numero = regPNum.getText().toString();
-                String tipo = regPTipo.getText().toString();
+                String descripción = regPDesc.getText().toString();
 
                 T4 pokemon = new T4();
                 pokemon.setNombre(nombre);
-                pokemon.setNumero(numero);
-                pokemon.setTipo(tipo);
+                pokemon.setDescripcion(descripción);
                 //pokemon.setFoto("https://assets.pokemon.com/assets/cms2/img/pokedex/full/" + numero + ".png");
                 pokemon.setUrlCamara(enviarUrlCamara.getText().toString());
                 pokemon.setFoto(pokemon.getUrlCamara());
 
                 Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("https://63023872c6dda4f287b57f7c.mockapi.io/")
+                        .baseUrl("https://648a929117f1536d65e948f6.mockapi.io/")
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
                 T4Service services = retrofit.create(T4Service.class);

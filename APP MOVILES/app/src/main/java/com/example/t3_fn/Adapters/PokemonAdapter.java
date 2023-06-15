@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.t3_fn.Clases.Pokemon;
 import com.example.t3_fn.ListadoActivity;
 import com.example.t3_fn.ListadoPokemonesActivity;
+import com.example.t3_fn.MapaActivity;
 import com.example.t3_fn.R;
 import com.example.t3_fn.Services.PokemonService;
 import com.example.t3_fn.ShowPokemon;
@@ -54,16 +55,17 @@ public class PokemonAdapter extends RecyclerView.Adapter{
         String nombreP = listaPokemones.get(position).getNombre();
         String tipoP = listaPokemones.get(position).getTipo();
         String fotoP = listaPokemones.get(position).getFoto();
-        String numeroP = listaPokemones.get(position).getNumero();
+        //String numeroP = listaPokemones.get(position).getNumero();
         int idPokemon = Integer.parseInt(listaPokemones.get(position).getId());
 
         View view = holder.itemView;
         TextView nomP = view.findViewById(R.id.tvNombrePokemon);
         TextView tipP = view.findViewById(R.id.tvtipoPokemon);
-        TextView numP = view.findViewById(R.id.tvNumeroPokemon);
+        //TextView numP = view.findViewById(R.id.tvNumeroPokemon);
         ImageView foP = view.findViewById(R.id.imFotoPokemon);
         Button eliminarP = view.findViewById(R.id.btnEliminarP);
         Button detalle = view.findViewById(R.id.btnDetalle);
+        Button maps = view.findViewById(R.id.btnAbrirMapa);
 
 
         //Enviar datos
@@ -72,7 +74,7 @@ public class PokemonAdapter extends RecyclerView.Adapter{
                 .resize(300, 400) //tamaño específico
                 .into(foP);
         nomP.setText(nombreP);
-        numP.setText(numeroP);
+        //numP.setText(numeroP);
         tipP.setText(tipoP);
 
 
@@ -111,7 +113,14 @@ public class PokemonAdapter extends RecyclerView.Adapter{
             }
         });
 
-
+        maps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, MapaActivity.class);
+                intent.putExtra("position", idPokemon);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

@@ -12,13 +12,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.t3_fn.Clases.Pokemon;
+import com.example.t3_fn.AgregarComentarioActivity;
 import com.example.t3_fn.Clases.T4;
-import com.example.t3_fn.ListadoPokemonesActivity;
+import com.example.t3_fn.ListadoT4Activity;
 import com.example.t3_fn.R;
-import com.example.t3_fn.Services.PokemonService;
 import com.example.t3_fn.Services.T4Service;
-import com.example.t3_fn.ShowT4Activity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -51,18 +49,17 @@ public class T4Adapter extends RecyclerView.Adapter{
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         String nombreP = listaT4.get(position).getNombre();
-        String tipoP = listaT4.get(position).getTipo();
         String fotoP = listaT4.get(position).getFoto();
-        String numeroP = listaT4.get(position).getNumero();
-        int idPokemon = Integer.parseInt(listaT4.get(position).getId());
+        String numeroP = listaT4.get(position).getDescripcion();
+        int idPublacion = Integer.parseInt(listaT4.get(position).getId());
 
         View view = holder.itemView;
         TextView nomP = view.findViewById(R.id.tvNombrePokemon);
-        TextView tipP = view.findViewById(R.id.tvtipoPokemon);
         TextView numP = view.findViewById(R.id.tvNumeroPokemon);
         ImageView foP = view.findViewById(R.id.imFotoPokemon);
         Button eliminarP = view.findViewById(R.id.btnEliminarP);
         Button detalle = view.findViewById(R.id.btnDetalle);
+        Button aggComent = view.findViewById(R.id.btnAgregarComentario);
 
 
         //Enviar datos
@@ -72,23 +69,22 @@ public class T4Adapter extends RecyclerView.Adapter{
                 .into(foP);
         nomP.setText(nombreP);
         numP.setText(numeroP);
-        tipP.setText(tipoP);
 
 
         eliminarP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("https://63023872c6dda4f287b57f7c.mockapi.io/")
+                        .baseUrl("https://648a929117f1536d65e948f6.mockapi.io/")
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
                 T4Service services = retrofit.create(T4Service.class);
-                Call<T4> call = services.delete(idPokemon);
+                Call<T4> call = services.delete(idPublacion);
                 call.enqueue(new Callback<T4>() {
                     @Override
                     public void onResponse(Call<T4> call, Response<T4> response) {
-                        System.out.println("Pokemon eliminado");
-                        Intent intent = new Intent(context, ListadoPokemonesActivity.class);
+                        System.out.println("Publicacióm eliminada");
+                        Intent intent = new Intent(context, ListadoT4Activity.class);
                         context.startActivity(intent);
                     }
 
@@ -101,11 +97,11 @@ public class T4Adapter extends RecyclerView.Adapter{
             }
         });
 
-        detalle.setOnClickListener(new View.OnClickListener() {
+        aggComent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, ShowT4Activity.class);
-                intent.putExtra("position", idPokemon);
+                Intent intent = new Intent(context, AgregarComentarioActivity.class);
+                intent.putExtra("position", idPublacion);
                 context.startActivity(intent);
             }
         });

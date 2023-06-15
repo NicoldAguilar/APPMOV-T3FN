@@ -36,7 +36,7 @@ public class ShowT4Activity extends AppCompatActivity {
         ImageView regEDImgPoke = findViewById(R.id.imFotoPokemon);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://63023872c6dda4f287b57f7c.mockapi.io/")
+                .baseUrl("https://648a929117f1536d65e948f6.mockapi.io/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         PokemonService services = retrofit.create(PokemonService.class);
@@ -48,7 +48,7 @@ public class ShowT4Activity extends AppCompatActivity {
                 pokepoke = response.body();
 
                 regEDNomPoke.setText(pokepoke.getNombre());
-                regEDNumPoke.setText(pokepoke.getNumero());
+                // regEDNumPoke.setText(pokepoke.getNumero());
                 regEDTipoPoke.setText(pokepoke.getTipo());
                 Picasso.get().load(pokepoke.getFoto())
                         .resize(300, 400) //tamaño específico

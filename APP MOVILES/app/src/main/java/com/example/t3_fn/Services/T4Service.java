@@ -16,18 +16,19 @@ import retrofit2.http.Path;
 
 public interface T4Service {
     //todo esto depende del API( GET SET DELETE )
-    @GET("Pokemones")
+    @GET("Publicaciones")
     Call<List<T4>> getAllUser();
-    @POST("Pokemones")
+    @POST("Publicaciones")
     Call<Void> create(@Body T4 pokeApi);//guardar datos
     /*@PUT("contacts/{id}")
     Call<Void> update (@Body Contactos contactApi, @Path("id")int id);*/
-    @PUT("Pokemones/{id}")
+    @PUT("Publicaciones/{id}")
     Call<T4> update(@Body T4 pokeApi, @Path("id")int id);
-    @DELETE("Pokemones/{id}")
+    @DELETE("Publicaciones/{id}")
     Call<T4> delete (@Path("id")int id);
-    @GET("Pokemones/{id}")
+    @GET("Publicaciones/{id}")
     Call<T4> findUser(@Path("id") int id);
     @POST("image")
     Call<ImageResponse> subirImagen(@Body ImageToSave imagen);
+
 }
